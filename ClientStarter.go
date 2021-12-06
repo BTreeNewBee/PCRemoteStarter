@@ -71,7 +71,7 @@ func reboot()  {
 	if err != nil {
 		return
 	}
-	pin := rpio.Pin(29)
+	pin := rpio.Pin(21)
 
 	pin.Output()       // Output mode
 	pin.High()         // Set pin High
