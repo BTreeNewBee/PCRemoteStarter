@@ -13,7 +13,7 @@ func main() {
 	out:
 	for ; ; {
 		//主动连接服务器
-		conn, err :=  net.Dial ("tcp", "192.168.50.185: 8848" ) //服务器的ip地址和端口
+		conn, err :=  net.Dial ("tcp", "192.168.50.185:8848" ) //服务器的ip地址和端口
 		if err != nil {
 			fmt.Println ( "connection err = " , err)
 			continue out
