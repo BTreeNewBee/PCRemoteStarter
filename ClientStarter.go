@@ -36,6 +36,7 @@ func messageHandler(message *Structs.Head) {
 		break
 	case Protocol.REBOOT:
 		fmt.Println("reboot ")
+		reboot()
 		break
 	}
 }
@@ -57,24 +58,24 @@ func startup()  {
 	if err != nil {
 		return
 	}
-	pin := rpio.Pin(10)
+	pin := rpio.Pin(29)
 
 	pin.Output()       // Output mode
 	pin.High()         // Set pin High
-	pin.Low()          // Set pin Low
-	pin.Toggle()       // Toggle pin (Low -> High -> Low)
-
-	pin.Input()        // Input mode
-	res := pin.Read()  // Read state from pin (High / Low)
-
-	fmt.Println(res)
-
-	pin.Mode(rpio.Output)   // Alternative syntax
-	pin.Write(rpio.High)    // Alternative syntax
-
-
-
-
+	time.Sleep(time.Millisecond * 400)
+	pin.Low()         // Set pin High
 }
 
+func reboot()  {
+	err := rpio.Open()
+	if err != nil {
+		return
+	}
+	pin := rpio.Pin(29)
+
+	pin.Output()       // Output mode
+	pin.High()         // Set pin High
+	time.Sleep(time.Second * 5)
+	pin.Low()         // Set pin High
+}
 
