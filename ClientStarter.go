@@ -16,6 +16,7 @@ func main() {
 		conn, err :=  net.Dial ("tcp", "192.168.50.185:8848" ) //服务器的ip地址和端口
 		if err != nil {
 			fmt.Println ( "connection err = " , err)
+			time.Sleep(time.Second * 10)
 			continue out
 		}
 		register(conn)
@@ -31,11 +32,9 @@ func messageHandler(message *Structs.Head) {
 		heartBeat(message)
 		break
 	case Protocol.STARTUP:
-		fmt.Println("start ")
 		startup()
 		break
 	case Protocol.REBOOT:
-		fmt.Println("reboot ")
 		reboot()
 		break
 	}
